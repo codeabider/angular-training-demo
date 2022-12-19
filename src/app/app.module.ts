@@ -9,6 +9,7 @@ import { ComponentTwoComponent } from './component-two/component-two.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared.module';
 import { FormsModule } from '@angular/forms';
+import { IDService } from './id.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     SharedModule
   ],
-  providers: [],
+  providers: [IDService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
