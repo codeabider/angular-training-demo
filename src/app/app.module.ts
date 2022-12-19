@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ComponentOneComponent } from './component-one/component-one.component';
 import { ComponentTwoComponent } from './component-two/component-two.component';
-import { ComponentThreeComponent } from './component-three/component-three.component';
-import { CardComponent } from './card/card.component';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -17,14 +15,12 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     ComponentOneComponent,
     ComponentTwoComponent,
-    ComponentThreeComponent,
-    CardComponent,
-    HomeComponent,
-    AboutComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
