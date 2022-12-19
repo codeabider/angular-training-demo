@@ -8,6 +8,7 @@ import { ComponentOneComponent } from './component-one/component-one.component';
 import { ComponentTwoComponent } from './component-two/component-two.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from './shared.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     SharedModule
   ],

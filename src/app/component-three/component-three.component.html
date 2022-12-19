@@ -1,4 +1,5 @@
 <section class="container">
     <h3>Component 3</h3>
-    <app-card></app-card>
+    <button (click)="getUserID()">Get User ID</button>
+    <app-card [id]="userID" (userIDEvent)="onUserIDUpdate($event)"></app-card>
 </section>
