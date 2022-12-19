@@ -4,8 +4,7 @@ import { IDService } from '../id.service';
 @Component({
   selector: 'app-component-three',
   templateUrl: './component-three.component.html',
-  styleUrls: ['./component-three.component.scss'],
-  providers: [IDService]
+  styleUrls: ['./component-three.component.scss']
 })
 export class ComponentThreeComponent implements OnInit {
   userID: number = 0;
