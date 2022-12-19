@@ -1,16 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IDService } from '../id.service';
 
 @Component({
   selector: 'app-component-three',
   templateUrl: './component-three.component.html',
   styleUrls: ['./component-three.component.scss']
 })
-export class ComponentThreeComponent {
+export class ComponentThreeComponent implements OnInit {
   userID: number = 0;
+  idServiceInstance;
 
-  getUserID(): void {}
+  constructor() {
+    this.idServiceInstance = new IDService();
+  }
+
+  ngOnInit(): void {
+    this.getUserID();
+  }
+
+  getUserID(): void {
+    this.userID = this.idServiceInstance.getID();
+  }
 
   onUserIDUpdate(id: number): void {
-    this.userID = id; // TODO: set in service
+    this.userID = id;
+    this.idServiceInstance.setID(id);
   }
 }
