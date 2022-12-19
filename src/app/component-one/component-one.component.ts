@@ -4,15 +4,13 @@ import { IDService } from '../id.service';
 @Component({
   selector: 'app-component-one',
   templateUrl: './component-one.component.html',
-  styleUrls: ['./component-one.component.scss']
+  styleUrls: ['./component-one.component.scss'],
+  providers: [IDService]
 })
 export class ComponentOneComponent implements OnInit {
   userID: number = 0;
-  idServiceInstance;
 
-  constructor() {
-    this.idServiceInstance = new IDService();
-  }
+  constructor(private idServiceInstance: IDService) {}
 
   ngOnInit(): void {
     this.getUserID();

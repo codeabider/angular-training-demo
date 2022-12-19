@@ -5,14 +5,12 @@ import { IDService } from '../id.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  providers: [IDService]
 })
 export class HeaderComponent {
   userID: number = 0;
-  idServiceInstance;
 
-  constructor() {
-    this.idServiceInstance = new IDService();
-  }
+  constructor(private idServiceInstance: IDService) {}
 
   submitUserID(): void {
     console.log(this.userID);
