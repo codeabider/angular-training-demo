@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IDService } from '../id.service';
 
+// TODO: demonstrate how we can get latest ID values updated by any other component
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,9 +15,5 @@ export class HeaderComponent {
   submitUserID(): void {
     console.log(this.userID);
     this.idServiceInstance.setID(this.userID);
-  }
-
-  getUserID(): void {
-    this.userID = this.idServiceInstance.getID();
   }
 }
