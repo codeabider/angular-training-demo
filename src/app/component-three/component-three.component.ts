@@ -17,6 +17,8 @@ export class ComponentThreeComponent implements OnInit, OnDestroy {
   userID: number = 0;
   subs = new Subscription();
   users: IUser[] = [];
+  isLoading = true;
+  hasError = false;
 
   constructor(
     private idServiceInstance: IDService,
@@ -30,9 +32,14 @@ export class ComponentThreeComponent implements OnInit, OnDestroy {
     );
     // TODO: demonstrate using async pipe
     this.subs.add(
-      this.dataService.getData('users').subscribe(users => {
-        console.log({ users });
-        this.users = users;
+      this.dataService.getData('users').subscribe({
+        next: users => {
+          console.log({ users });
+          this.users = users;
+        },
+        error: () => {
+          this.hasError = true;
+        }
       })
     )
   }
