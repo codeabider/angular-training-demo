@@ -1,15 +1,17 @@
+import { Injectable } from "@angular/core";
 import { LoggerService } from "./logger.service";
 
 let instanceCount = 0;
 
-// TODO: demonstrate error when we try to inject LoggerService w/o decorator
+// TODO: demonstrate need of providedIn & `root` vs `any`
+@Injectable({
+    providedIn: 'root'
+})
 export class IDService {
     public id: number = 0;
-    loggerService: LoggerService;
 
-    constructor() {
+    constructor(private loggerService: LoggerService) {
         instanceCount++;
-        this.loggerService = new LoggerService();
         this.loggerService.log('service: times instantiated: ', instanceCount);
     }
 

@@ -9,7 +9,7 @@ import { ComponentTwoComponent } from './component-two/component-two.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared.module';
 import { FormsModule } from '@angular/forms';
-import { IDService } from './id.service';
+import { LoggerService } from './logger.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { IDService } from './id.service';
     AppRoutingModule,
     SharedModule
   ],
-  providers: [IDService],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
