@@ -19,10 +19,13 @@ export class ComponentThreeComponent implements OnInit, OnDestroy {
   users: IUser[] = [];
   isLoading = true;
   hasError = false;
+  userData;
 
   constructor(
     private idServiceInstance: IDService,
-    private dataService: DataService) {}
+    private dataService: DataService) {
+      this.userData = this.dataService.getData('users');
+    }
 
   ngOnInit(): void {
     this.subs.add(
@@ -30,9 +33,9 @@ export class ComponentThreeComponent implements OnInit, OnDestroy {
         this.getUserID(id);
       })
     );
-    // TODO: demonstrate using async pipe
+
     this.subs.add(
-      this.dataService.getData('users').subscribe({
+      this.userData.subscribe({
         next: users => {
           console.log({ users });
           this.users = users;

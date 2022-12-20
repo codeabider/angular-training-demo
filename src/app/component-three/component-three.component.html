@@ -7,5 +7,10 @@
             <li *ngFor="let user of users">{{ user.name }}</li>
         </ol>
     </ng-template>
+
+    <!-- <em>Following uses async pipe</em>
+    <ol>
+        <li *ngFor="let user of userData | async">{{ user.name }}</li>
+    </ol> -->
     <app-card [id]="userID" (userIDEvent)="onUserIDUpdate($event)"></app-card>
 </section>
