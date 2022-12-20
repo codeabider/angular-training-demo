@@ -2,5 +2,19 @@
     "users": [{
         "id": 1,
         "name": "John"
+    }, {
+        "id": 3,
+        "name": "Jane"
+    }],
+    "addresses": [{
+        "id": 1,
+        "city": "Delhi",
+        "country": "India",
+        "contact": "+91-9911991199"
+    }, {
+        "id": 3,
+        "city": "Wisconsin",
+        "country": "USA",
+        "contact": "+91-8822882288"
     }]
 }

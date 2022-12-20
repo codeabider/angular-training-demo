@@ -1,6 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DataService } from '../data.service';
 import { IDService } from '../id.service';
+
+export interface IUser {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-component-three',
@@ -9,14 +15,26 @@ import { IDService } from '../id.service';
 })
 export class ComponentThreeComponent implements OnInit, OnDestroy {
   userID: number = 0;
-  sub = new Subscription();
+  subs = new Subscription();
+  users: IUser[] = [];
 
-  constructor(private idServiceInstance: IDService) {}
+  constructor(
+    private idServiceInstance: IDService,
+    private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.sub = this.idServiceInstance.getIDSubject().subscribe(id => {
-      this.getUserID(id);
-    });
+    this.subs.add(
+      this.idServiceInstance.getIDSubject().subscribe(id => {
+        this.getUserID(id);
+      })
+    );
+    // TODO: demonstrate using async pipe
+    this.subs.add(
+      this.dataService.getData('users').subscribe(users => {
+        console.log({ users });
+        this.users = users;
+      })
+    )
   }
 
   getUserID(id: number): void {
@@ -29,6 +47,6 @@ export class ComponentThreeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

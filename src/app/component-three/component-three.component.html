@@ -1,4 +1,10 @@
 <section class="container">
     <h3>Component 3</h3>
+    <div *ngIf="!users.length; else userList">Loading users...</div>
+    <ng-template #userList>
+        <ol>
+            <li *ngFor="let user of users">{{ user.name }}</li>
+        </ol>
+    </ng-template>
     <app-card [id]="userID" (userIDEvent)="onUserIDUpdate($event)"></app-card>
 </section>
