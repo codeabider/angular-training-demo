@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DataService } from '../data.service';
 import { IDService } from '../id.service';
 
 @Component({
@@ -9,14 +10,31 @@ import { IDService } from '../id.service';
 })
 export class ComponentOneComponent implements OnInit, OnDestroy {
   userID: number = 0;
-  sub = new Subscription();
+  addresses: any = [];
+  isLoading;
 
-  constructor(private idServiceInstance: IDService) {}
+  subs = new Subscription();
+
+  constructor(
+    private idServiceInstance: IDService,
+    private dataService: DataService
+  ) {
+    this.isLoading = this.dataService.isLoading;
+  }
 
   ngOnInit(): void {
-    this.sub = this.idServiceInstance.getIDSubject().subscribe(id => {
-      this.getUserID(id);
-    });
+    this.subs.add(
+      this.idServiceInstance.getIDSubject().subscribe(id => {
+        this.getUserID(id);
+      })
+    );
+
+    this.subs.add(
+      this.dataService.getAddresses().subscribe(addresses => {
+        console.log({ addresses });
+        this.addresses = addresses;
+      })
+    )
   }
 
   getUserID(id: number): void {
@@ -29,6 +47,6 @@ export class ComponentOneComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

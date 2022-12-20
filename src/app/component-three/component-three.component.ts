@@ -17,14 +17,15 @@ export class ComponentThreeComponent implements OnInit, OnDestroy {
   userID: number = 0;
   subs = new Subscription();
   users: IUser[] = [];
-  isLoading = true;
+  isLoading;
   hasError = false;
   userData;
 
   constructor(
     private idServiceInstance: IDService,
     private dataService: DataService) {
-      this.userData = this.dataService.getData('users');
+      this.userData = this.dataService.getUsers();
+      this.isLoading = this.dataService.isLoading;
     }
 
   ngOnInit(): void {

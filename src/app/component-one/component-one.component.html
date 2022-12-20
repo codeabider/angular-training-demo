@@ -1,4 +1,10 @@
 <section class="container">
     <h3>Component 1</h3>
+    <div *ngIf="(isLoading | async); else addressList">Loading addresses...</div>
+    <ng-template #addressList>
+        <ol>
+            <li *ngFor="let address of addresses">{{ address.city }}, {{ address.country }}</li>
+        </ol>
+    </ng-template>
     <app-card [id]="userID" (userIDEvent)="onUserIDUpdate($event)"></app-card>
 </section>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { ComponentTwoComponent } from './component-two/component-two.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared.module';
 import { LoggerService } from './logger.service';
+import { AppInterceptorService } from './app-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,14 @@ import { LoggerService } from './logger.service';
     SharedModule,
     HttpClientModule
   ],
-  providers: [LoggerService],
+  providers: [
+    LoggerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

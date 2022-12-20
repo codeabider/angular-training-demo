@@ -1,16 +1,11 @@
 <section class="container">
     <h3>Component 3</h3>
-    <div *ngIf="!users.length && !hasError; else userList">Loading users...</div>
+    <div *ngIf="(isLoading | async) && !hasError; else userList">Loading users...</div>
     <strong *ngIf="hasError">Error in fetching data!</strong>
     <ng-template #userList>
         <ol>
             <li *ngFor="let user of users">{{ user.name }}</li>
         </ol>
     </ng-template>
-
-    <!-- <em>Following uses async pipe</em>
-    <ol>
-        <li *ngFor="let user of userData | async">{{ user.name }}</li>
-    </ol> -->
     <app-card [id]="userID" (userIDEvent)="onUserIDUpdate($event)"></app-card>
 </section>
