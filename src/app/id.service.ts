@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { LoggerService } from "./logger.service";
 
 let instanceCount = 0;
@@ -10,15 +10,14 @@ let instanceCount = 0;
 })
 export class IDService {
     private id: number = 0;
-    // TODO: demonstrate drawback `Subject` in this scenarios & replace with `BehaviorSubject` - change routes, etc
-    private idSubject = new Subject<number>();
+    private idSubject = new BehaviorSubject<number>(this.id);
 
     constructor(private loggerService: LoggerService) {
         instanceCount++;
         this.loggerService.log('service: times instantiated: ', instanceCount);
     }
 
-    getIDSubject(): Subject<number> {
+    getIDSubject(): BehaviorSubject<number> {
         return this.idSubject;
     }
 
