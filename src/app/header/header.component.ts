@@ -12,6 +12,12 @@ export class HeaderComponent {
 
   constructor(private idServiceInstance: IDService) {}
 
+  ngOnInit() {
+    this.idServiceInstance
+      .getIDSubject()
+      .subscribe(id => this.userID = id);
+  }
+
   submitUserID(): void {
     console.log(this.userID);
     this.idServiceInstance.setID(this.userID);

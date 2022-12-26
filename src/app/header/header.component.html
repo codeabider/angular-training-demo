@@ -6,9 +6,7 @@
           <li><a routerLink="/about">About</a></li>
         </ul>
       </nav>
-    <em>values not updated here if updated in child -- why?</em>
     <br />
-    <input type="number" [(ngModel)]="userID"/>
+    <input type="number" [(ngModel)]="userID" (ngModelChange)="submitUserID()"/>
     <p>Entered Value: {{ userID }}</p>
-    <button class="btn-primary" (click)="submitUserID()">Set User ID</button>
 </header>
